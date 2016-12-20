@@ -1,0 +1,27 @@
+<!--DOCTYPE html -->
+{% extends 'base.html' %}
+
+
+ {% block content %}  
+<h1>{{movie}}</h1>
+
+
+<p><img src="{{movie.image.url}}" alt=""/></p>
+<p>Release date: {{movie.release_date}}</p>
+<p>Average Rating: <strong>{{movie.average_rating}}</strong></p>
+<p>Genre: {{movie.genre}}</p>
+<!--<p>{{stars}}</p>-->
+{% if user.is_authenticated %}
+{% if messages %}
+	{% for message in messages %}
+      <p>{{ message }}</p>
+	{% endfor %}
+{% endif %}
+<p><a class="btn btn-default" href="{% url 'add_comment_to_movie' id=movie.id %}">Add comment</a>
+</p><p><a href="list_comments/">View all comments</a></p>
+{% else %}
+<p>Login to comment</p>
+{% endif %}
+<p></p>
+
+{% endblock %}

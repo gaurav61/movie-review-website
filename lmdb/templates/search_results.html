@@ -1,0 +1,19 @@
+ 
+{% extends 'base.html' %}
+
+
+ {% block content %}  
+        <p>You searched for: <strong>{{ query }}</strong></p>
+   
+        {% if movies %}           
+            <p>Found {{ movies|length }} movie{{ movies|pluralize }}</p>
+            <ul>               
+                {% for movie in movies %}               
+                <a href="/movie/{{movie.id}}"><li>{{ movie.title }}</li> </a>              
+                {% endfor %}           
+            </ul>       
+        {% else %}           
+            <p>No movies matched your search criteria.</p>       
+        {% endif %}     
+
+{% endblock %}
